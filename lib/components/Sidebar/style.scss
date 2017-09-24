@@ -1,3 +1,5 @@
+@import '../../helpers/base';
+
 /**
  * Sidebar (Block)
  */
@@ -7,6 +9,21 @@
   height: 100%;
   padding: 40px;
   box-sizing: border-box;
+}
+
+/**
+ * Sidebar (Elements)
+ */
+.sidebar {
+  &__title {
+    display: block;
+    margin-bottom: 24px;
+    color: theme-color(primary);
+    font-size: rem(16);
+    font-weight: normal;
+    line-height: 40px;
+    text-decoration: none;
+  }
 
   .logo {
     display: block;
