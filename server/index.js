@@ -3,7 +3,11 @@
  */
 import express from 'express';
 import React from 'react';
+import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
+import { Provider } from 'react-redux';
+import { StaticRouter } from 'react-router';
+import { createStore } from 'redux';
 import serialize from 'serialize-javascript';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -18,6 +22,8 @@ import {
   __PRODUCTION__,
   __VERSION__,
 } from '../config';
+import Application from '../lib/containers/Application';
+import reducers from '../lib/reducers';
 import webpackConfig from '../webpack.config.babel';
 
 /**
@@ -50,11 +56,20 @@ if (__DEVELOPMENT__) {
 app.use((req, res) => {
   const context = {};
 
-  const store = {};
+  const store = createStore(reducers);
 
-  const preloadedState = {};
+  const preloadedState = store.getState();
 
-  const renderedBody = {};
+  const renderedBody = renderToString(
+    <Provider store={store}>
+      <StaticRouter
+        location={{ pathname: req.url }}
+        context={context}
+      >
+        <Application />
+      </StaticRouter>
+    </Provider>,
+  );
 
   const head = Helmet.rewind();
 
