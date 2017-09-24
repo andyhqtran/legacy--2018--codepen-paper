@@ -84,7 +84,7 @@ app.use((req, res) => {
           ${head.meta}
           ${head.link}
           ${head.script}
-          <link href="/public/css/normalize.css?v=6.0.0" rel="stylesheet" type="text/css" />
+          <link href="/public/css/normalize.css?v=7.0.0" rel="stylesheet" type="text/css" />
           ${__PRODUCTION__ ? `<link href="/public/bundle.css?v=${__VERSION__}" rel="stylesheet" type="text/css" />` : ''}
         </head>
         <body>
