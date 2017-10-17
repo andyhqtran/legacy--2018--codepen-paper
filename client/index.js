@@ -3,7 +3,7 @@
  */
 import createHistory from 'history/createBrowserHistory';
 import React from 'react';
-import { render } from 'react-dom';
+import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 import { applyMiddleware, compose, createStore } from 'redux';
@@ -84,4 +84,4 @@ if (module.hot) {
 /**
  * Render application
  */
-render(<Root />, document.getElementById('root'));
+hydrate(<Root />, document.getElementById('root'));

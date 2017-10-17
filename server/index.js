@@ -2,6 +2,7 @@
  * External dependencies
  */
 import express from 'express';
+import path from 'path';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
@@ -29,11 +30,20 @@ import webpackConfig from '../webpack.config.babel';
 /**
  * Local variables
  */
+const __PATHS__ = {
+  public: path.join(__dirname, '../public'),
+};
+
 
 /**
  * Application
  */
 const app = express();
+
+/**
+ * Express middleware
+ */
+app.use('/public', express.static(__PATHS__.public));
 
 /**
  * Webpack middleware
